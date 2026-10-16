@@ -1,0 +1,25 @@
+
+services:
+  backend:
+    build: ./backend
+    image: employee-management-backend
+    ports:
+      - "8082:8080"
+    networks:
+      - employee-network
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    image: employee-management-frontend
+    container_name: employee-frontend
+    ports:
+      - "3001:80"
+    networks:
+      - employee-network
+    restart: unless-stopped
+
+networks:
+  employee-network:
+    external: true
+
